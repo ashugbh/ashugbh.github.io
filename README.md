@@ -1,19 +1,28 @@
-# Flutter & Backend Engineer Portfolio
+# Ashenafi Gebrehiwet Brhane Portfolio
 
-Modern, minimal, recruiter-friendly portfolio website built with vanilla `HTML`, `CSS`, and `JavaScript` for a FinTech-focused engineer profile.
+Personal portfolio website for Flutter and Backend Engineer roles, focused on production FinTech delivery.
 
-This starter is intentionally populated with placeholder text so you can safely customize it with your personal details later.
-
-## Live Portfolio Goals
-- Clean first impression for recruiters and hiring managers
-- Fast loading, responsive UI on desktop and mobile
-- Strong section structure for interview-ready storytelling
-- Easy deployment to GitHub Pages
+## Live URL
+`https://ashugbh.github.io/`
 
 ## Tech Stack
-- `HTML5` (semantic, SEO-friendly structure)
-- `CSS3` (custom design system, responsive layout, subtle animations)
-- `JavaScript` (mobile nav, smooth scrolling, reveal effects, form feedback)
+- `HTML5`
+- `CSS3`
+- `Vanilla JavaScript`
+- `Google Fonts` (Inter, Outfit)
+
+## Features
+- Single-page, recruiter-focused portfolio layout
+- Sections: Home, About, Skills, Experience, Projects, Contact
+- Featured Emun case study with interactive screenshot slider:
+  - prev/next controls
+  - dot navigation
+  - keyboard and touch support
+  - autoplay with pause on interaction
+- Typed hero role animation
+- Scroll reveal and active navigation highlighting
+- Mobile navigation drawer with click-outside and `Esc` close handling
+- SEO and social metadata plus `robots.txt` and `sitemap.xml`
 
 ## Project Structure
 ```text
@@ -25,78 +34,59 @@ This starter is intentionally populated with placeholder text so you can safely 
 `-- assets
     |-- css
     |   `-- styles.css
+    |-- js
+    |   `-- main.js
     |-- preview.svg
-    `-- js
-        `-- main.js
+    |-- images
+    |   |-- My_photo.jpg
+    |   `-- Emun
+    |       |-- emun-1.jpg
+    |       |-- emun-2.jpg
+    |       |-- emun-3.jpg
+    |       |-- emun-4.jpg
+    |       |-- emun-5.jpg
+    |       |-- photo_2026-04-03_11-06-47.jpg
+    |       |-- photo_2026-04-03_11-06-48.jpg
+    |       |-- photo_2026-04-03_11-06-49.jpg
+    |       |-- photo_2026-04-03_11-06-49 (2).jpg
+    |       `-- photo_2026-04-03_11-06-50.jpg
+    `-- projects
+        |-- ai-surveillance-system.png
+        |-- ashugbh-portfolio.png
+        |-- beqelal-fintech-app.png
+        |-- bill-management-system.png
+        `-- mobile-transaction-app.png
 ```
-
-## Sections Included
-1. Hero
-2. About
-3. Skills (categorized)
-4. Experience (timeline)
-5. Projects (card layout)
-6. Contact (form + links)
-7. Footer
-
-## Customize Before Applying
-Update these placeholders in `index.html`:
-- `[Your Name]`
-- Hero tagline and about text
-- Experience entries (role, company, impact)
-- Project titles/descriptions/links
-- Contact email + LinkedIn URL
-- Canonical and Open Graph URL metadata
 
 ## Run Locally
-No build tools required. Open `index.html` directly in your browser.
+No build step is required.
 
-For a local server (recommended):
 ```bash
-# Python 3
+# Option 1: open directly
+index.html
+
+# Option 2: local server (recommended)
 python -m http.server 8080
 ```
-Then visit `http://localhost:8080`.
+
+Then open `http://localhost:8080`.
+
+## Content Updates
+Main files to edit:
+- `index.html`: profile content, links, metadata, and sections
+- `assets/css/styles.css`: design system, layout, and responsive styles
+- `assets/js/main.js`: menu, reveal effects, slider, typed text, and active nav logic
+
+If you change domain or deployment path, also update:
+- canonical + Open Graph/Twitter URLs in `index.html`
+- sitemap URL in `robots.txt`
+- `<loc>` and `<lastmod>` values in `sitemap.xml`
 
 ## Deploy to GitHub Pages
+1. Push this repository to GitHub.
+2. Open `Settings` -> `Pages`.
+3. Set `Source` to `Deploy from a branch`.
+4. Select branch `main` and folder `/ (root)`.
+5. Save and wait for deployment.
 
-### 1. Create a repository on GitHub
-You can use:
-- `portfolio` (project site), or
-- `ashugbh.github.io` (user site)
-
-### 2. Push this code
-```bash
-git init
-git add .
-git commit -m "Initial portfolio website"
-git branch -M main
-git remote add origin https://github.com/ashugbh/<repo-name>.git
-git push -u origin main
-```
-
-### 3. Enable GitHub Pages
-1. Open your repository on GitHub
-2. Go to `Settings` -> `Pages`
-3. Under `Build and deployment`, set:
-   - `Source`: `Deploy from a branch`
-   - `Branch`: `main`
-   - `Folder`: `/ (root)`
-4. Save
-
-### 4. Access your deployed site
-- If repo is `ashugbh.github.io`:
-  - `https://ashugbh.github.io/`
-- If repo is a project repo (for example `portfolio`):
-  - `https://ashugbh.github.io/portfolio/`
-
-## SEO Notes
-- `robots.txt` and `sitemap.xml` are included
-- Meta description and social tags are preconfigured in `index.html`
-- Remember to update URL values to your final deployed path
-
-## Recommended Next Upgrades
-1. Replace placeholder project links with real repos and add screenshots.
-2. Connect contact form to Formspree, Netlify Forms, or your backend endpoint.
-3. Add a downloadable CV link once final.
-4. Add real metrics for each project (latency, uptime, conversions, scale).
+Expected URL for this project: `https://ashugbh.github.io/`
