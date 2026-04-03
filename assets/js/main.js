@@ -12,6 +12,14 @@ if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
 }
 
+function syncHeaderScrollState() {
+  if (!header) return;
+  header.classList.toggle("is-scrolled", window.scrollY > 8);
+}
+
+syncHeaderScrollState();
+window.addEventListener("scroll", syncHeaderScrollState, { passive: true });
+
 function closeNav() {
   body.classList.remove("nav-open");
   if (navToggle) {
@@ -155,4 +163,38 @@ if (contactForm && formStatus) {
     formStatus.textContent = `Thanks ${name}. Your message is captured in this demo form. For now, please contact directly via ashugb780@gmail.com.`;
     contactForm.reset();
   });
+}
+
+const typedRoleNode = document.getElementById("typed-role");
+if (typedRoleNode) {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const roles = ["secure, scalable FinTech products", "production Flutter experiences", "reliable backend API systems"];
+
+  if (!prefersReducedMotion) {
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const tick = () => {
+      const role = roles[roleIndex];
+      typedRoleNode.textContent = deleting ? role.slice(0, Math.max(0, charIndex - 1)) : role.slice(0, charIndex + 1);
+      charIndex += deleting ? -1 : 1;
+
+      if (!deleting && charIndex === role.length) {
+        deleting = true;
+        window.setTimeout(tick, 1300);
+        return;
+      }
+
+      if (deleting && charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+
+      const delay = deleting ? 40 : 70;
+      window.setTimeout(tick, delay);
+    };
+
+    window.setTimeout(tick, 600);
+  }
 }
