@@ -5,8 +5,6 @@ const nav = document.querySelector(".primary-nav");
 const navLinks = Array.from(document.querySelectorAll(".primary-nav a"));
 const revealElements = document.querySelectorAll(".reveal");
 const yearNode = document.getElementById("current-year");
-const contactForm = document.getElementById("contact-form");
-const formStatus = document.getElementById("form-status");
 
 if (yearNode) {
   yearNode.textContent = String(new Date().getFullYear());
@@ -133,36 +131,74 @@ if ("IntersectionObserver" in window) {
   sections.forEach((section) => navObserver.observe(section));
 }
 
-if (contactForm && formStatus) {
-  const requiredFields = Array.from(contactForm.querySelectorAll("[required]"));
+const emunSlider = document.querySelector('[data-slider="emun"]');
+if (emunSlider) {
+  const viewport = emunSlider.querySelector(".slider-viewport");
+  const track = emunSlider.querySelector(".slider-track");
+  const slides = Array.from(emunSlider.querySelectorAll(".slide"));
+  const prevBtn = emunSlider.querySelector(".slider-btn.prev");
+  const nextBtn = emunSlider.querySelector(".slider-btn.next");
+  const dots = Array.from(emunSlider.querySelectorAll(".slider-dot"));
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let activeIndex = 0;
+  let autoTimer;
 
-  requiredFields.forEach((field) => {
-    field.addEventListener("input", () => {
-      formStatus.textContent = "";
+  function renderSlide(index) {
+    if (!track || slides.length === 0) return;
+    const boundedIndex = (index + slides.length) % slides.length;
+    activeIndex = boundedIndex;
+    track.style.transform = `translateX(-${boundedIndex * 100}%)`;
+
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle("is-active", slideIndex === boundedIndex);
+    });
+
+    dots.forEach((dot, dotIndex) => {
+      const isActive = dotIndex === boundedIndex;
+      dot.classList.toggle("is-active", isActive);
+      dot.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+  }
+
+  function stopAutoSlide() {
+    if (autoTimer) {
+      window.clearInterval(autoTimer);
+      autoTimer = undefined;
+    }
+  }
+
+  function startAutoSlide() {
+    if (prefersReducedMotion || slides.length < 2) return;
+    stopAutoSlide();
+    autoTimer = window.setInterval(() => {
+      renderSlide(activeIndex + 1);
+    }, 3400);
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    renderSlide(activeIndex - 1);
+    startAutoSlide();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    renderSlide(activeIndex + 1);
+    startAutoSlide();
+  });
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener("click", () => {
+      renderSlide(dotIndex);
+      startAutoSlide();
     });
   });
 
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = new FormData(contactForm);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
-    const message = String(formData.get("message") || "").trim();
+  viewport?.addEventListener("mouseenter", stopAutoSlide);
+  viewport?.addEventListener("mouseleave", startAutoSlide);
+  viewport?.addEventListener("focusin", stopAutoSlide);
+  viewport?.addEventListener("focusout", startAutoSlide);
 
-    if (!name || !email || !message) {
-      formStatus.textContent = "Please fill in name, email, and message.";
-      return;
-    }
-
-    const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!looksLikeEmail) {
-      formStatus.textContent = "Please enter a valid email address.";
-      return;
-    }
-
-    formStatus.textContent = `Thanks ${name}. Your message is captured in this demo form. For now, please contact directly via ashugb780@gmail.com.`;
-    contactForm.reset();
-  });
+  renderSlide(0);
+  startAutoSlide();
 }
 
 const typedRoleNode = document.getElementById("typed-role");

@@ -106,7 +106,9 @@
 
         <aside class="hero-visual reveal" aria-label="Profile photo">
           <div class="photo-shell">
-            <img src="assets/images/My_photo.jpg" alt="Portrait of Ashenafi Gebrehiwet Brhane in a blue suit and tie" loading="eager" decoding="async">
+            <div class="photo-orb">
+              <img src="assets/images/My_photo.jpg" alt="Portrait of Ashenafi Gebrehiwet Brhane showing face and shoulders" loading="eager" decoding="async">
+            </div>
           </div>
           <div class="hero-card">
             <h2>Current Focus</h2>
@@ -145,21 +147,16 @@
                 <h3>Role Target</h3>
                 <p>Flutter, backend, and FinTech engineering positions</p>
               </article>
+              <article class="mini-card">
+                <h3>FinTech Proof</h3>
+                <p>Production delivery of secure transaction and account workflows.</p>
+              </article>
+              <article class="mini-card">
+                <h3>Engineering Approach</h3>
+                <p>Clean Architecture, DDD, and API reliability with team ownership.</p>
+              </article>
             </div>
           </div>
-          <aside class="about-panel reveal" aria-label="About highlights">
-            <img src="assets/images/My_photo.jpg" alt="Ashenafi profile portrait" loading="lazy" decoding="async">
-            <div class="about-highlight-grid">
-              <article class="about-highlight">
-                <h3>Mobile Development</h3>
-                <p>Flutter, state management, responsive and performant UI systems.</p>
-              </article>
-              <article class="about-highlight">
-                <h3>Backend Delivery</h3>
-                <p>Django REST API design, authentication, authorization, and data modeling.</p>
-              </article>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -270,22 +267,12 @@
             <p class="eyebrow">Featured Case Study</p>
             <h3 id="emun-title">Emun Brokerage Mobile Application</h3>
             <p>
-              I developed a modern brokerage mobile application designed to help users manage investments,
-              monitor financial markets, and execute transactions seamlessly. The app focuses on delivering
-              a secure, intuitive, and real-time trading experience.
-            </p>
-            <p>
-              Key features include a portfolio dashboard with live balance updates, market insights for stocks and
-              cryptocurrencies, and quick actions such as deposits and withdrawals. The interface is built with a
-              user-centric design, using a clean layout and trust-oriented color scheme to enhance usability and confidence.
-            </p>
-            <p>
-              The application emphasizes performance, scalability, and responsive design, ensuring smooth interaction across devices.
-              It also integrates real-time data visualization to help users make informed financial decisions.
-            </p>
-            <p>
-              This project demonstrates my skills in mobile app development, UI/UX design, state management,
-              and API integration, particularly in building fintech solutions.
+              Emun is a two-sided online marketplace that connects buyers and sellers of goods such as homes, electronics,
+              and mobile devices without holding inventory. The platform enables individuals and businesses to list products,
+              discover items through categorized browsing and search, and interact directly. It focuses on creating a simple,
+              low-friction environment for listing, discovering, and transacting. Emun supports scalable multi-vendor marketplace
+              operations similar to modern e-commerce platforms. The system is designed to efficiently match supply and demand
+              while providing a secure and user-friendly mobile experience.
             </p>
             <div class="tag-cloud">
               <span class="tag">Flutter</span>
@@ -300,22 +287,37 @@
               <a class="btn btn-ghost btn-small" href="#contact">Contact</a>
             </div>
           </div>
-          <div class="featured-case-gallery" aria-label="Emun mobile application screenshots">
-            <figure class="phone-shot">
-              <img src="assets/images/Emun/emun-1.jpg" alt="Emun app profile and admin dashboard view" loading="lazy" decoding="async">
-            </figure>
-            <figure class="phone-shot">
-              <img src="assets/images/Emun/emun-2.jpg" alt="Emun app message and chat interface" loading="lazy" decoding="async">
-            </figure>
-            <figure class="phone-shot">
-              <img src="assets/images/Emun/emun-3.jpg" alt="Emun app home feed with featured listings" loading="lazy" decoding="async">
-            </figure>
-            <figure class="phone-shot">
-              <img src="assets/images/Emun/emun-4.jpg" alt="Emun app listing submission flow" loading="lazy" decoding="async">
-            </figure>
-            <figure class="phone-shot">
-              <img src="assets/images/Emun/emun-5.jpg" alt="Emun app listing details and contact seller view" loading="lazy" decoding="async">
-            </figure>
+          <div class="featured-case-gallery emun-slider" data-slider="emun" aria-label="Emun mobile application screenshots">
+            <div class="slider-viewport">
+              <div class="slider-track">
+                <figure class="phone-shot slide is-active">
+                  <img src="assets/images/Emun/emun-1.jpg" alt="Emun app profile and admin dashboard view" loading="lazy" decoding="async">
+                </figure>
+                <figure class="phone-shot slide">
+                  <img src="assets/images/Emun/emun-2.jpg" alt="Emun app message and chat interface" loading="lazy" decoding="async">
+                </figure>
+                <figure class="phone-shot slide">
+                  <img src="assets/images/Emun/emun-3.jpg" alt="Emun app home feed with featured listings" loading="lazy" decoding="async">
+                </figure>
+                <figure class="phone-shot slide">
+                  <img src="assets/images/Emun/emun-4.jpg" alt="Emun app listing submission flow" loading="lazy" decoding="async">
+                </figure>
+                <figure class="phone-shot slide">
+                  <img src="assets/images/Emun/emun-5.jpg" alt="Emun app listing details and contact seller view" loading="lazy" decoding="async">
+                </figure>
+              </div>
+            </div>
+            <div class="slider-controls" aria-label="Screenshot controls">
+              <button class="slider-btn prev" type="button" aria-label="Show previous screenshot">Prev</button>
+              <div class="slider-dots" aria-label="Screenshot navigation">
+                <button class="slider-dot is-active" type="button" aria-label="Show screenshot 1" aria-current="true"></button>
+                <button class="slider-dot" type="button" aria-label="Show screenshot 2" aria-current="false"></button>
+                <button class="slider-dot" type="button" aria-label="Show screenshot 3" aria-current="false"></button>
+                <button class="slider-dot" type="button" aria-label="Show screenshot 4" aria-current="false"></button>
+                <button class="slider-dot" type="button" aria-label="Show screenshot 5" aria-current="false"></button>
+              </div>
+              <button class="slider-btn next" type="button" aria-label="Show next screenshot">Next</button>
+            </div>
           </div>
         </article>
 
@@ -399,29 +401,21 @@
       <div class="container contact-shell reveal">
         <div class="section-heading">
           <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Let us build something impactful</h2>
-          <p class="section-copy">Open to Flutter, backend, and FinTech engineering roles with international teams.</p>
+          <h2 id="contact-title">Direct Contact</h2>
         </div>
-        <div class="contact-grid">
-          <form id="contact-form" class="contact-form" novalidate>
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required>
-
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell me about the role or project" required></textarea>
-
-            <button type="submit" class="btn btn-primary">Send Message</button>
-            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-          </form>
-
-          <aside class="contact-links" aria-label="External links">
-            <a href="mailto:ashugb780@gmail.com">ashugb780@gmail.com</a>
-            <a href="https://github.com/ashugbh" target="_blank" rel="noreferrer">github.com/ashugbh</a>
-            <a href="https://www.linkedin.com/in/ashenafibr/" target="_blank" rel="noreferrer">linkedin.com/in/ashenafibr</a>
-          </aside>
+        <div class="contact-links contact-links-minimal" aria-label="Direct contact options">
+          <a href="tel:+251978194411">
+            <span>Phone</span>
+            <strong>+251 978 194 411</strong>
+          </a>
+          <a href="https://www.linkedin.com/in/ashenafibr/" target="_blank" rel="noreferrer">
+            <span>LinkedIn</span>
+            <strong>linkedin.com/in/ashenafibr</strong>
+          </a>
+          <a href="https://github.com/ashugbh" target="_blank" rel="noreferrer">
+            <span>GitHub</span>
+            <strong>github.com/ashugbh</strong>
+          </a>
         </div>
       </div>
     </section>
