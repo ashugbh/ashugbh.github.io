@@ -139,9 +139,18 @@ if (emunSlider) {
   const prevBtn = emunSlider.querySelector(".slider-btn.prev");
   const nextBtn = emunSlider.querySelector(".slider-btn.next");
   const dots = Array.from(emunSlider.querySelectorAll(".slider-dot"));
+  const currentNode = emunSlider.querySelector("[data-slider-current]");
+  const totalNode = emunSlider.querySelector("[data-slider-total]");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let activeIndex = 0;
   let autoTimer;
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+  const swipeThreshold = 42;
+
+  if (totalNode) {
+    totalNode.textContent = String(slides.length);
+  }
 
   function renderSlide(index) {
     if (!track || slides.length === 0) return;
@@ -150,7 +159,9 @@ if (emunSlider) {
     track.style.transform = `translateX(-${boundedIndex * 100}%)`;
 
     slides.forEach((slide, slideIndex) => {
-      slide.classList.toggle("is-active", slideIndex === boundedIndex);
+      const isActive = slideIndex === boundedIndex;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", isActive ? "false" : "true");
     });
 
     dots.forEach((dot, dotIndex) => {
@@ -158,6 +169,10 @@ if (emunSlider) {
       dot.classList.toggle("is-active", isActive);
       dot.setAttribute("aria-current", isActive ? "true" : "false");
     });
+
+    if (currentNode) {
+      currentNode.textContent = String(boundedIndex + 1);
+    }
   }
 
   function stopAutoSlide() {
@@ -192,10 +207,60 @@ if (emunSlider) {
     });
   });
 
+  viewport?.setAttribute("tabindex", "0");
+  viewport?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      renderSlide(activeIndex - 1);
+      startAutoSlide();
+      return;
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      renderSlide(activeIndex + 1);
+      startAutoSlide();
+    }
+  });
+
+  viewport?.addEventListener(
+    "touchstart",
+    (event) => {
+      touchStartX = event.touches[0].clientX;
+      touchDeltaX = 0;
+      stopAutoSlide();
+    },
+    { passive: true }
+  );
+
+  viewport?.addEventListener(
+    "touchmove",
+    (event) => {
+      touchDeltaX = event.touches[0].clientX - touchStartX;
+    },
+    { passive: true }
+  );
+
+  viewport?.addEventListener("touchend", () => {
+    if (Math.abs(touchDeltaX) >= swipeThreshold) {
+      renderSlide(activeIndex + (touchDeltaX < 0 ? 1 : -1));
+    }
+    touchStartX = 0;
+    touchDeltaX = 0;
+    startAutoSlide();
+  });
+
   viewport?.addEventListener("mouseenter", stopAutoSlide);
   viewport?.addEventListener("mouseleave", startAutoSlide);
   viewport?.addEventListener("focusin", stopAutoSlide);
   viewport?.addEventListener("focusout", startAutoSlide);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoSlide();
+    } else {
+      startAutoSlide();
+    }
+  });
 
   renderSlide(0);
   startAutoSlide();
