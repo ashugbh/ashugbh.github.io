@@ -30,6 +30,12 @@ if (navToggle) {
   navToggle.addEventListener("click", toggleNav);
 }
 
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 760) {
+    closeNav();
+  }
+});
+
 document.addEventListener("click", (event) => {
   if (!body.classList.contains("nav-open")) return;
   if (!nav || !navToggle) return;
@@ -97,6 +103,9 @@ function setActiveNavLink(sectionId) {
   });
 }
 
+const initialHash = window.location.hash ? window.location.hash.replace("#", "") : "home";
+setActiveNavLink(initialHash || "home");
+
 if ("IntersectionObserver" in window) {
   const sections = document.querySelectorAll("main section[id]");
   const navObserver = new IntersectionObserver(
@@ -117,16 +126,33 @@ if ("IntersectionObserver" in window) {
 }
 
 if (contactForm && formStatus) {
+  const requiredFields = Array.from(contactForm.querySelectorAll("[required]"));
+
+  requiredFields.forEach((field) => {
+    field.addEventListener("input", () => {
+      formStatus.textContent = "";
+    });
+  });
+
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(contactForm);
     const name = String(formData.get("name") || "").trim();
-    if (!name) {
-      formStatus.textContent = "Please add your name and try again.";
+    const email = String(formData.get("email") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    if (!name || !email || !message) {
+      formStatus.textContent = "Please fill in name, email, and message.";
       return;
     }
 
-    formStatus.textContent = `Thanks ${name}, your message is queued in this demo form. Connect this form to Formspree or your backend API to go live.`;
+    const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!looksLikeEmail) {
+      formStatus.textContent = "Please enter a valid email address.";
+      return;
+    }
+
+    formStatus.textContent = `Thanks ${name}. Your message is captured in this demo form. For now, please contact directly via ashugb780@gmail.com.`;
     contactForm.reset();
   });
 }
