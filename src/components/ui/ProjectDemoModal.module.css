@@ -1,0 +1,163 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: -16%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(83, 168, 255, 0.2), transparent 30%),
+    radial-gradient(circle at 82% 84%, rgba(23, 210, 230, 0.14), transparent 28%);
+  opacity: 0.9;
+}
+
+.dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  max-height: calc(100vh - 1rem);
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background:
+    radial-gradient(circle at top left, rgba(82, 168, 255, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(5, 12, 25, 0.98), rgba(9, 16, 31, 0.98));
+  box-shadow: 0 42px 90px -42px rgba(2, 6, 23, 0.92);
+  padding: 0.7rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  outline: none;
+}
+
+.dialog:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: var(--text);
+  display: inline-grid;
+  place-items: center;
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(82, 168, 255, 0.72);
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.carouselShell {
+  width: 100%;
+  padding-top: 0.2rem;
+}
+
+.carouselRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.navButton {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: var(--text);
+  display: inline-grid;
+  place-items: center;
+  font: inherit;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.navButton:hover,
+.navButton:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(82, 168, 255, 0.72);
+  background: rgba(15, 23, 42, 0.96);
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.35rem;
+  }
+
+  .dialog {
+    width: min(100%, 380px);
+    max-height: calc(100vh - 0.7rem);
+    padding: 0.55rem;
+    border-radius: 24px;
+  }
+
+  .closeButton {
+    top: 0.45rem;
+    right: 0.45rem;
+  }
+
+  .carouselRow {
+    gap: 0.35rem;
+  }
+
+  .navButton {
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialog {
+    animation: modalEnter 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -1,0 +1,59 @@
+.section {
+  position: relative;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+}
+
+.copyCard {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  padding: 1.2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.copyCard p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.copyCard p + p {
+  margin-top: 0.9rem;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.8rem;
+}
+
+.factCard {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  padding: 0.92rem;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.factCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(82, 168, 255, 0.55);
+  box-shadow: 0 16px 28px -20px var(--accent-glow);
+}
+
+.factTitle {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.factDescription {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}

@@ -1,92 +1,78 @@
 # Ashenafi Gebrehiwet Brhane Portfolio
 
-Personal portfolio website for Flutter and Backend Engineer roles, focused on production FinTech delivery.
+Modern React portfolio for a Flutter and backend engineer, rebuilt from the original vanilla HTML/CSS/JS site into a modular Vite app.
 
-## Live URL
-`https://ashugbh.github.io/`
+## Stack
 
-## Tech Stack
-- `HTML5`
-- `CSS3`
-- `Vanilla JavaScript`
-- `Google Fonts` (Inter, Outfit)
+- React
+- Vite
+- CSS Modules
+- Google Fonts: Inter and Outfit
 
 ## Features
-- Single-page, recruiter-focused portfolio layout
-- Sections: Home, About, Skills, Experience, Projects, Contact
-- Featured Emun case study with interactive screenshot slider:
-  - prev/next controls
-  - dot navigation
-  - keyboard and touch support
-  - autoplay with pause on interaction
-- Typed hero role animation
-- Scroll reveal and active navigation highlighting
-- Mobile navigation drawer with click-outside and `Esc` close handling
-- SEO and social metadata plus `robots.txt` and `sitemap.xml`
 
-## Project Structure
-```text
-.
-|-- index.html
-|-- README.md
-|-- robots.txt
-|-- sitemap.xml
-`-- assets
-    |-- css
-    |   `-- styles.css
-    |-- js
-    |   `-- main.js
-    |-- preview.svg
-    |-- images
-    |   |-- My_photo.jpg
-    |   `-- Emun
-    |       |-- emun-1.jpg
-    |       |-- emun-2.jpg
-    |       |-- emun-3.jpg
-    |       |-- emun-4.jpg
-    |       |-- emun-5.jpg
-    |       |-- photo_2026-04-03_11-06-47.jpg
-    |       |-- photo_2026-04-03_11-06-48.jpg
-    |       |-- photo_2026-04-03_11-06-49.jpg
-    |       |-- photo_2026-04-03_11-06-49 (2).jpg
-    |       `-- photo_2026-04-03_11-06-50.jpg
-    `-- projects
-        |-- ai-surveillance-system.png
-        |-- ashugbh-portfolio.png
-        |-- beqelal-fintech-app.png
-        |-- bill-management-system.png
-        `-- mobile-transaction-app.png
-```
+- Modular React sections for navbar, hero, about, skills, experience, projects, contact, and footer
+- Data-driven rendering for skills, experience, projects, and contact links
+- Smooth scrolling navigation with active section tracking
+- Subtle reveal animations and a typed hero role animation
+- Dark/light mode toggle with persistent preference
+- Accessible semantics, keyboard-friendly controls, and improved metadata
+- Lazy-loaded images with fixed dimensions to reduce layout shift
 
 ## Run Locally
-No build step is required.
 
 ```bash
-# Option 1: open directly
-index.html
-
-# Option 2: local server (recommended)
-python -m http.server 8080
+npm install
+npm start
 ```
 
-Then open `http://localhost:8080`.
+Vite runs on the local dev server shown in the terminal, usually `http://localhost:5173`.
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```text
+public/
+  assets/
+    images/
+    projects/
+    preview.svg
+  robots.txt
+  sitemap.xml
+src/
+  assets/
+    classNames.js
+    portfolioData.js
+  components/
+    layout/
+    sections/
+    ui/
+  hooks/
+  pages/
+  styles/
+```
 
 ## Content Updates
-Main files to edit:
-- `index.html`: profile content, links, metadata, and sections
-- `assets/css/styles.css`: design system, layout, and responsive styles
-- `assets/js/main.js`: menu, reveal effects, slider, typed text, and active nav logic
 
-If you change domain or deployment path, also update:
-- canonical + Open Graph/Twitter URLs in `index.html`
-- sitemap URL in `robots.txt`
-- `<loc>` and `<lastmod>` values in `sitemap.xml`
+Edit `src/assets/portfolioData.js` to update:
 
-## Deploy to GitHub Pages
-1. Push this repository to GitHub.
-2. Open `Settings` -> `Pages`.
-3. Set `Source` to `Deploy from a branch`.
-4. Select branch `main` and folder `/ (root)`.
-5. Save and wait for deployment.
+- hero copy and CTA links
+- about text and facts
+- skill groups
+- experience timeline
+- featured case study and project cards
+- contact and social links
 
-Expected URL for this project: `https://ashugbh.github.io/`
+Edit `src/styles/globals.css` to adjust the global theme, colors, spacing, and responsive breakpoints.
+
+## Notes
+
+- The app uses `npm start` for development and `npm run build` for production output.
+- SEO tags are defined in `index.html` and synchronized at runtime from the React app.
+- Static assets live in `public/assets`, while the source architecture lives under `src/`.
